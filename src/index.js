@@ -15,7 +15,7 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.on('interactionCreate', (interaction) => {
+client.on('interactionCreate', async interaction => {
     if(!interaction.isChatInputCommand()) return;
 
     if(interaction.commandName === 'hey') {
