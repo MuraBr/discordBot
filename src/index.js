@@ -44,9 +44,13 @@ client.on('interactionCreate', (interaction) => {
         interaction.reply('Pong!');
     }
     if(interaction.commandName === 'meme') {
-        interaction.reply("Here's your meme!");
-        const img = getMeme();
-        interaction.reply(img);
+        try {
+            const resposta = await axios.get('https://memeapi.pythonanywhere.com/');
+            interaction.reply(`Resposta da API: ${resposta.data}`);
+        } catch (error) {
+            console.error('Erro ao fazer a solicitação à API:', error);
+            interaction.reply('Ocorreu um erro ao buscar um MEME.');
+        }
     }
     if(interaction.commandName === 'ms') {
         interaction.reply(`Latency is ${Date.now() - message.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`);
