@@ -48,6 +48,9 @@ client.on('interactionCreate', (interaction) => {
         const img = getMeme();
         interaction.reply(img);
     }
+    if(interaction.commandName === 'ms') {
+        interaction.reply(`Latency is ${Date.now() - message.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`);
+    }
 });
 
 client.login(process.env.CLIENT_TOKEN);

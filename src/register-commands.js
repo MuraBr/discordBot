@@ -2,6 +2,8 @@ require('dotenv').config();
 const { REST, Routes } = require('discord.js');
 const fs = require('fs');
 
+let deleta = false;
+
 // module.exports = (client) => {
 //     client.registerCommands = async(commandFolders, path) => {
 //         client.commandArray = [];
@@ -13,7 +15,7 @@ const fs = require('fs');
 //         }
 //     }
 // }
-
+const rest = new REST().setToken(process.env.CLIENT_TOKEN);
 const commands = [
     {
         name: 'hey',
@@ -27,10 +29,13 @@ const commands = [
         name: 'meme',
         description: 'Replies with a meme',
     },
+    {
+        name: 'ms',
+        description: 'Return ping in milliseconds'
+    },
 ];
-const rest = new REST({ version: '10' }).setToken(process.env.CLIENT_TOKEN);
 
-(async () => {
+const slashRegister = async () => {
     try {
         console.log("Registering slash comments");
 
@@ -42,4 +47,16 @@ const rest = new REST({ version: '10' }).setToken(process.env.CLIENT_TOKEN);
     } catch (error) {
         console.log(`There was an error: ${error}`);
     }
-})();
+};
+if(deleta == false) slashRegister();
+if(deleta == true)
+{
+    rest.put(Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID), { body: [] })
+        .then(() => console.log('Successfully deleted all guild commands.'))
+        .catch(console.error);
+
+    // for global commands
+    rest.put(Routes.applicationCommands(process.env.CLIENT_ID), { body: [] })
+        .then(() => console.log('Successfully deleted all application commands.'))
+        .catch(console.error);
+}
