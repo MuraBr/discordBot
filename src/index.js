@@ -34,7 +34,7 @@ client.on('interactionCreate', async interaction => {
         }
     }
     if(interaction.commandName === 'ms') {
-        interaction.reply(`Latency is ${Date.now() - interaction.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`);
+        interaction.reply(`Latency is ${Math.abs(Date.now() - interaction.createdTimestamp)}ms. API Latency is ${Math.abs(Math.round(client.ws.ping))}ms`);
     }
 });
 
