@@ -26,7 +26,7 @@ client.on('interactionCreate', async interaction => {
     }
     if(interaction.commandName === 'meme') {
         try {
-            const resposta = await axios.get('https://memeapi.pythonanywhere.com/');
+            const resposta = await axios.get('https://meme-api.com/gimme/wholesomememes');
             interaction.reply(`Resposta da API: ${resposta.data}`);
         } catch (error) {
             console.error('Erro ao fazer a solicitação à API:', error);
