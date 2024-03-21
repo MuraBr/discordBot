@@ -1,2 +1,2 @@
 # DiscordBot
-Versão teste de um bot de Discord
+Versão principal de um bot de Discord
