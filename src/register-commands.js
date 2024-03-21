@@ -1,20 +1,10 @@
 require('dotenv').config();
 const { REST, Routes } = require('discord.js');
 const fs = require('fs');
+const path = require('node:path');
 
 let deleta = false;
 
-// module.exports = (client) => {
-//     client.registerCommands = async(commandFolders, path) => {
-//         client.commandArray = [];
-//         for(folder of commandFolders) {
-//             const commandFiles = fs.readdirSync(`${path}/${folder}`).filter((file => file.endsWith('.js')));
-//             for(const file of commandFiles) {
-//                 const command = require
-//             }
-//         }
-//     }
-// }
 const rest = new REST().setToken(process.env.CLIENT_TOKEN);
 const commands = [
     {
